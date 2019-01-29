@@ -281,6 +281,9 @@ def runCmd(records, email, cmd):
       sys.exit(0)
   cmds.get(cmd[0], help)(records, email, cmd[1:])
 
+if not open(os.path.dirname(__file__) + "/records.txt", "r"):
+  open(os.path.dirname(__file__) + "/records.txt", "a")
+
 with open(os.path.dirname(__file__) + "/records.txt", "r") as records:
   while True:
     cmd = records.readline()
