@@ -282,7 +282,7 @@ def runCmd(records, email, cmd):
   cmds.get(cmd[0], help)(records, email, cmd[1:])
 
 if not os.path.exists(os.path.dirname(__file__) + "/records.txt"):
-  with open(os.path.dirname(__file__) + "/records.txt", "a") as records: 
+  open(os.path.dirname(__file__) + "/records.txt", "a").close() 
 
 with open(os.path.dirname(__file__) + "/records.txt", "r") as records:
   while True:
