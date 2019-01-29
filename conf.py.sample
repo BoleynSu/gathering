@@ -1,7 +1,7 @@
 #!/bin/env python3
 import smtplib
 
-FROM = "youremail+gathering@gmail.com"
+EMAIL = "youremail+gathering@gmail.com"
 USER = "youremail"
 PASSWD = "USE AN APP PASSWORD INSTEAD OF THE REAL PASSWORD"
 
