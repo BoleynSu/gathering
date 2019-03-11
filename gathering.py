@@ -1,5 +1,5 @@
 #!/bin/env python3
-import os, sys, time, subprocess, smtplib, imapclient, email, uu, io, pyzmail
+import os, sys, time, subprocess, smtplib, imapclient, email, uu, io, pyzmail, ssl
 from datetime import datetime
 from email.mime.text import MIMEText
 from conf import EMAIL
@@ -43,7 +43,7 @@ while True:
           print("connecting...")
         else:
           print("reconnecting...")
-        server = imapclient.IMAPClient("imap.gmail.com", use_uid=True, ssl=True, ssl_context=imapclient.create_default_context(cafile="/etc/pki/tls/certs/ca-bundle.crt"))
+        server = imapclient.IMAPClient("imap.gmail.com", use_uid=True, ssl=True, ssl_context=ssl.create_default_context(cafile="/etc/pki/tls/certs/ca-bundle.crt"))
         server.login(USER, PASSWD)
         check()
         connected = True
