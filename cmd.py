@@ -7,7 +7,7 @@ from conf import USER
 from conf import PASSWD
 
 with open(os.path.dirname(__file__) + "/log.txt", "a") as log:
-  log.write("[" + str(datetime.now()) + ", " + sys.argv[1] + "]\t" + str(sys.argv))
+  log.write("[" + str(datetime.now()) + "]\t" + str(sys.argv))
   log.write("\n")
 
 emailToName = dict()
@@ -24,14 +24,14 @@ def sendTo(emails, message):
   print(message.split("\n")[0])
   print(message)
   msg = MIMEText(message, _charset="UTF-8")
-  msg["From"] = EMAIL
+  msg["From"] = "Group Gathering <" + EMAIL + ">"
   msg["To"] = ", ".join(emails)
   msg["Subject"] = message.split("\n")[0]
   server = smtplib.SMTP("smtp.gmail.com")
   server.ehlo()
   server.starttls()
   server.login(USER, PASSWD)
-  server.sendmail(EMAIL, emails, msg.as_string())
+  server.sendmail(msg['From'], emails, msg.as_string())
   server.close()
 
 def sendEmail(email, message):
@@ -292,5 +292,8 @@ with open(os.path.dirname(__file__) + "/records.txt", "r") as records:
     cmd = cmd.strip().split("\t")
     runCmd(None, cmd[0][1:-1].split(", ")[1], cmd[1:])
   with open(os.path.dirname(__file__) + "/records.txt", "a") as records:
-    runCmd(records, sys.argv[1], sys.argv[2:])
+    if sys.argv[1] == '-n':
+      runCmd(records, emailOf[sys.argv[2]], sys.argv[3:])
+    else:
+      runCmd(records, sys.argv[1], sys.argv[2:])
 
