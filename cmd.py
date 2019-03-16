@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/usr/bin/env python3
 import os, sys, smtplib
 from datetime import datetime
 from email.mime.text import MIMEText
