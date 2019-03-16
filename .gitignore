@@ -1,5 +1,7 @@
 conf.py
 records.txt
 log.txt
-gathering.pid
-gathering.log
+.pid
+.log
+.gitignore
+__pycache__
