@@ -28,7 +28,6 @@ def sendTo(emails, message):
   msg["To"] = ", ".join(emails)
   msg["Subject"] = message.split("\n")[0]
   server = smtplib.SMTP("smtp.gmail.com")
-  server.ehlo()
   server.starttls()
   server.login(USER, PASSWD)
   server.sendmail(msg['From'], emails, msg.as_string())
