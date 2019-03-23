@@ -5,7 +5,7 @@ EMAIL = "youremail+gathering@gmail.com"
 USER = "youremail"
 PASSWD = "USE AN APP PASSWORD INSTEAD OF THE REAL PASSWORD"
 
-def onError():
+def onError(error):
   smtp = smtplib.SMTP("localhost")
   message = """\
 From: gathering@boleyn.su

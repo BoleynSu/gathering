@@ -33,10 +33,10 @@ server = None
 while True:
   try:
     check()
-  except:
-    connected = False
+  except e:
+    error = e
     iteration = 0
-    while (not connected) and (iteration < 20):
+    while error and (iteration < 20):
       iteration = iteration + 1
       try:
         if server == None:
@@ -46,12 +46,13 @@ while True:
         server = imapclient.IMAPClient("imap.gmail.com", use_uid=True, ssl=True, ssl_context=ssl.create_default_context(cafile="/etc/pki/tls/certs/ca-bundle.crt"))
         server.login(USER, PASSWD)
         check()
-        connected = True
+        error = None
       except Exception as e:
         print(e)
+        error = e
         time.sleep(30)
-    if not connected:
-      onError()
+    if error:
+      onError(error)
       break
   time.sleep(5)
 
