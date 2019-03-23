@@ -24,9 +24,9 @@ def check():
         if line:
           cmd = [s.strip() for s in line.split(";")]
           subprocess.call([os.path.dirname(__file__) + "/cmd.py"] + [frm] + cmd)
-          server.delete_messages([msg_id])
-          server.expunge()
           break
+      server.delete_messages([msg_id])
+      server.expunge()
 
 server = None
 
