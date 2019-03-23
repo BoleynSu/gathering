@@ -33,7 +33,7 @@ server = None
 while True:
   try:
     check()
-  except e:
+  except Exception as e:
     error = e
     iteration = 0
     while error and (iteration < 20):
