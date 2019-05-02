@@ -20,9 +20,9 @@ def sendTo(emails, message):
   emails = [ email for email in emails if email != "mailer-daemon@googlemail.com" ]
   if not emails:
     return
-  print(", ".join(emails))
-  print(message.split("\n")[0])
-  print(message)
+#  print(", ".join(emails))
+#  print(message.split("\n")[0])
+#  print(message)
   msg = MIMEText(message, _charset="UTF-8")
   msg["From"] = "Group Gathering <" + EMAIL + ">"
   msg["To"] = ", ".join(emails)
