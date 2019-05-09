@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, sys, time, subprocess, smtplib, imapclient, email, uu, io, pyzmail, ssl
+import os, sys, time, subprocess, smtplib, imapclient, email, pyzmail, ssl
 from datetime import datetime
 from email.mime.text import MIMEText
 from conf import EMAIL
