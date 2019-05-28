@@ -90,7 +90,7 @@ def announce(records, email, args):
   global emailToName
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   message = args[0] + "\n"
   message += "If you are a regular attender and you don't want to attend this time, please reply \"quit_once\".\n"
   message += "If you are not a regular attender and you want to attend this time, please reply \"attend_once\"."
@@ -100,14 +100,14 @@ def register(records, email, args):
   global emailOf, emailToName, regular, remaining
   if not args:
     help(None, email, ["ERROR: invalid command"])
-    sys.exit(0)
+    sys.exit(1)
   name = args[0]
   if name in emailOf:
     help(None, email, ["ERROR: [" + name + "] has already been registered"])
-    sys.exit(0)
+    sys.exit(1)
   if email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has already registered another account"])
-    sys.exit(0)
+    sys.exit(1)
   emailToName[email] = name
   emailOf[name] = email
   regular[name] = True
@@ -124,15 +124,15 @@ def change_email(records, email, args):
   global emailOf, emailToName
   if not args:
     help(None, email, ["ERROR: invalid command"])
-    sys.exit(0)
+    sys.exit(1)
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   name = emailToName[email]
   new_email = args[0]
   if new_email in emailToName:
     help(None, email, ["ERROR: [" + new_email + "] has already registered another account"])
-    sys.exit(0)
+    sys.exit(1)
   emailOf[name] = new_email
   emailToName.pop(email)
   emailToName[new_email] = name
@@ -147,7 +147,7 @@ def cancel(records, email, args):
   global emailOf, emailToName, remaining
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   name = emailToName[email]
   emailToName.pop(email)
   emailOf.pop(name)
@@ -161,10 +161,10 @@ def add_value(records, email, args):
   global emailToName, remaining
   if not args:
     help(None, email, ["ERROR: invalid command"])
-    sys.exit(0)
+    sys.exit(1)
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   name = emailToName[email]
   try:
     amount = float(args[0])
@@ -182,10 +182,10 @@ def spend(records, email, args):
   global emailToName, emailOf, regular, remaining, once 
   if not args:
     help(None, email, ["ERROR: invalid command"])
-    sys.exit(0)
+    sys.exit(1)
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   name = emailToName[email]
   try:
     amount = float(args[0])
@@ -213,7 +213,7 @@ def be_a_regular_attender(records, email, args):
   global emailToName, regular
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   name = emailToName[email]
   regular[name] = True
   if records:
@@ -226,7 +226,7 @@ def stop_being_a_regular_attender(records, email, args):
   global emailToName, regular
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   name = emailToName[email]
   regular[name] = False
   if records:
@@ -239,7 +239,7 @@ def attend_once(records, email, args):
   global emailToName, once
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   name = emailToName[email]
   once[name] = True
   if records:
@@ -252,7 +252,7 @@ def quit_once(records, email, args):
   global emailToName, once
   if not email in emailToName:
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
-    sys.exit(0)
+    sys.exit(1)
   name = emailToName[email]
   once[name] = False
   if records:
@@ -277,7 +277,7 @@ def runCmd(records, email, cmd):
   for c in cmd:
     if c.find("\t") != -1:
       help(None, email, ["ERROR: some parameters are wrong"])
-      sys.exit(0)
+      sys.exit(1)
   cmds.get(cmd[0], help)(records, email, cmd[1:])
 
 if not os.path.exists(os.path.dirname(__file__) + "/records.txt"):
