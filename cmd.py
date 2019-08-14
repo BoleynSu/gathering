@@ -33,6 +33,15 @@ def sendTo(emails, message):
   server.sendmail(msg['From'], emails, msg.as_string())
   server.close()
 
+def getAttenders():
+  attenders = []
+  for name in emailToName.values():
+    if regular[name] and once.get(name, True):
+      attenders.append(name)
+    if (not regular[name]) and once.get(name, False):
+      attenders.append(name)
+  return attenders
+
 def sendEmail(email, message):
   global emailToName, emailOf, regular, remaining, once
   message += "\n## Statistics ##\n"
@@ -42,6 +51,7 @@ def sendEmail(email, message):
   for r in remaining.values():
     total += r
   message += "Amount: [" + ("%.2f" % total) + "] HKD\n"
+  message += "Attenders: [" + ", ".join(getAttenders()) + "]\n" 
   message += "Reply \"help\" for usage"
   if email == None:
     sendTo(emailToName.keys(), message)
@@ -189,12 +199,7 @@ def spend(records, email, args):
   name = emailToName[email]
   try:
     amount = float(args[0])
-    attenders = []
-    for name in emailToName.values():
-      if regular[name] and once.get(name, True):
-        attenders.append(name)
-      if (not regular[name]) and once.get(name, False):
-        attenders.append(name)
+    attenders = getAttenders()
     for attender in attenders:
       remaining[attender] -= amount / len(attenders)
     once = dict()
