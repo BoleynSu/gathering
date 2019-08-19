@@ -9,11 +9,11 @@ from conf import onError
 
 def check():
   global server
-  server.select_folder('INBOX')
+  server.select_folder("INBOX")
   messages = server.search(["TO", EMAIL])
-  response = server.fetch(messages, ['RFC822'])
+  response = server.fetch(messages, ["RFC822"])
   for msg_id, data in response.items():
-      msg = email.message_from_bytes(data[b'RFC822'])
+      msg = email.message_from_bytes(data[b"RFC822"])
       msg = pyzmail.PyzMessage.factory(msg)
       frm = msg.get_address("from")[1]
       charset = msg.text_part.charset

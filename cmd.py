@@ -73,19 +73,19 @@ This command will register name with your email. For example, 苏蕉 can registe
 4) change_email; new_email
 This command will link the name linked to your email to a new email. For example, 苏蕉 can change his email by sending "change_email; boleyn.su@gmail.com".
 5) cancel
-This command will cancel your account so that you won't recieve any message any more, but your remaining money will be kept no matter it's positive or negative.
+This command will cancel your account so that you will not recieve any message any more, but your remaining money will be kept no matter it is positive or negative.
 6) add_value; amount
 For example, you can add 123.45 HKD to your account by sending "add_value; 123.45".
 7) spend; amount
-For example, if we spend 100 HKD in one gathering, the bookkeeper should send "spend; 100". Then all regular attenders that don't quit and all nonregular attenders that attend will pay this amount together.
+For example, if we spend 100 HKD in one gathering, the bookkeeper should send "spend; 100". Then all regular attenders that do not quit and all nonregular attenders that attend will pay this amount together.
 8) be_a_regular_attender
-If you want to be a regular attender, reply "be_a_regular_attender". Note that you are a regular attender by default, if you don't want to be one then use the next command.
+If you want to be a regular attender, reply "be_a_regular_attender". Note that you are a regular attender by default, if you do not want to be one then use the next command.
 9) stop_being_a_regular_attender
-If you don't want to be a regular attender, reply "stop_being_a_regular_attender".
+If you do not want to be a regular attender, reply "stop_being_a_regular_attender".
 10) attend_once
 If you are not a regular attender and want to attend the coming gathering, reply "attend_once".
 11) quit_once
-If you are a regular attender and don't want to attend the coming gathering, reply "quit_once"."""
+If you are a regular attender and do not want to attend the coming gathering, reply "quit_once"."""
   if args:
     message += str(args[0]) + "\n"
   sendEmail(email, message)
@@ -96,7 +96,7 @@ def announce(records, email, args):
     help(None, email, ["ERROR: [" + email + "] has not registered any account"])
     sys.exit(1)
   message = args[0] + "\n"
-  message += "If you are a regular attender and you don't want to attend this time, please reply \"quit_once\".\n"
+  message += "If you are a regular attender and you do not want to attend this time, please reply \"quit_once\".\n"
   message += "If you are not a regular attender and you want to attend this time, please reply \"attend_once\"."
   sendEmail(None, message)
 
