@@ -24,7 +24,7 @@ def sendTo(emails, message):
   server = smtplib.SMTP("smtp.gmail.com")
   server.starttls()
   server.login(USER, PASSWD)
-  server.sendmail(msg['From'], emails, msg.as_string())
+  server.sendmail(msg["From"], emails, msg.as_string())
   server.close()
 
 def getAttenders():
@@ -290,7 +290,7 @@ with open(os.path.dirname(__file__) + "/records.txt", "r") as records:
     cmd = cmd.strip().split("\t")
     runCmd(None, cmd[0][1:-1].split(", ")[1], cmd[1:])
   with open(os.path.dirname(__file__) + "/records.txt", "a") as records:
-    if sys.argv[1] == '-n':
+    if sys.argv[1] == "-n":
       runCmd(records, emailOf[sys.argv[2]], sys.argv[3:])
     else:
       runCmd(records, sys.argv[1], sys.argv[2:])
