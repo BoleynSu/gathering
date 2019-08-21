@@ -19,7 +19,7 @@ def check():
       charset = msg.text_part.charset
       if not charset:
         charset = "utf-8"
-      lines = msg.text_part.get_payload().decode(charset).split("\r\n")
+      lines = msg.text_part.get_payload().decode(charset, errors="ignore").split("\r\n")
       for line in lines:
         if line:
           cmd = [s.strip() for s in line.split(";")]
