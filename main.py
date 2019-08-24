@@ -29,6 +29,7 @@ def check():
       server.expunge()
 
 server = None
+errorSent = False
 
 while True:
   try:
@@ -51,8 +52,8 @@ while True:
         print(e)
         error = e
         time.sleep(30)
-    if error:
+    if error and not errorSent:
       onError(error)
-      break
+      errorSent = True
   time.sleep(5)
 
