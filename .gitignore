@@ -1,7 +1,0 @@
-conf.py
-records.txt
-log.txt
-.pid
-.log
-.gitignore
-__pycache__
