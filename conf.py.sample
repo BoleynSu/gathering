@@ -1,18 +1,6 @@
-#!/bin/env python3
-import smtplib
-
 EMAIL = "youremail+gathering@gmail.com"
 USER = "youremail"
 PASSWD = "USE AN APP PASSWORD INSTEAD OF THE REAL PASSWORD"
 
 def onError(error):
-  smtp = smtplib.SMTP("localhost")
-  message = """\
-From: gathering@boleyn.su
-To: youremail@gmail.com
-Subject: %s
-
-%s
-""" % ("Job failed [gathering]", "Job failed [gathering]")
-  smtp.sendmail("gathering@boleyn.su", "youremail@gmail.com", message)
-  smtp.quit()
+  print(error)
