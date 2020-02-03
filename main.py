@@ -16,15 +16,17 @@ def check():
       msg = email.message_from_bytes(data[b"RFC822"])
       msg = pyzmail.PyzMessage.factory(msg)
       frm = msg.get_address("from")[1]
-      charset = msg.text_part.charset
-      if not charset:
-        charset = "utf-8"
-      lines = msg.text_part.get_payload().decode(charset, errors="ignore").split("\r\n")
-      for line in lines:
-        if line:
-          cmd = [s.strip() for s in line.split(";")]
-          subprocess.call([os.path.dirname(__file__) + "/cmd.py"] + [frm] + cmd)
-          break
+      content = msg.text_part
+      if content:
+        charset = content.charset
+        if not charset:
+          charset = "utf-8"
+        lines = content.get_payload().decode(charset, errors="ignore").split("\r\n")
+        for line in lines:
+          if line:
+            cmd = [s.strip() for s in line.split(";")]
+            subprocess.call([os.path.dirname(__file__) + "/cmd.py"] + [frm] + cmd)
+            break
       server.delete_messages([msg_id])
       server.expunge()
 
