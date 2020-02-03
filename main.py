@@ -55,5 +55,7 @@ while True:
     if error and not errorSent:
       onError(error)
       errorSent = True
-  time.sleep(5)
+  server.idle()
+  server.idle_check(timeout=3600)
+  server.idle_done()
 
