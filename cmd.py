@@ -69,9 +69,9 @@ Replying "help" will show you this message.
 2) announce; message
 This will send an email to all users. There should be no simecolon or tab in the message and this rule applies to other parameters in other commands too. For example, you can send "announce; let's go eating".
 3) register; name
-This command will register name with your email. For example, 苏蕉 can register himself by sending "register; 苏蕉" using jiaosu@se.cuhk.edu.hk.
+This command will register name with your email. For example, Alice can register herself by sending "register; Alice" using alice@email@example.com.
 4) change_email; new_email
-This command will link the name linked to your email to a new email. For example, 苏蕉 can change his email by sending "change_email; boleyn.su@gmail.com".
+This command will link the name linked to your email to a new email. For example, Bob can change his email by sending "change_email; bob@example.com".
 5) cancel
 This command will cancel your account so that you will not recieve any message any more, but your remaining money will be kept no matter it is positive or negative.
 6) add_value; amount
