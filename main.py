@@ -10,6 +10,8 @@ from conf import onError
 def check():
   global server
   server.select_folder("INBOX")
+  server.idle()
+  server.idle_check(timeout=3600)
   messages = server.search(["TO", EMAIL])
   response = server.fetch(messages, ["RFC822"])
   for msg_id, data in response.items():
@@ -29,6 +31,7 @@ def check():
             break
       server.delete_messages([msg_id])
       server.expunge()
+  server.idle_done()
 
 server = None
 errorSent = False
@@ -57,7 +60,4 @@ while True:
     if error and not errorSent:
       onError(error)
       errorSent = True
-  server.idle()
-  server.idle_check(timeout=3600)
-  server.idle_done()
 
